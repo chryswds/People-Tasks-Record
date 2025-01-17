@@ -1,6 +1,10 @@
-package cl.spring.record;
+package cl.spring.record.Person;
 
+import cl.spring.record.Tasks.TasksModel;
 import jakarta.persistence.*;
+import cl.spring.record.Tasks.TasksModel;
+
+import java.util.List;
 
 //Entity transforms a class into a database entity
 // JPA - Java Persistence API
@@ -14,6 +18,9 @@ public class PersonModel {
     private String name;
     private String email;
     private int age;
+
+    @OneToMany
+    private List<TasksModel> tasks;
 
 
     public PersonModel() {
