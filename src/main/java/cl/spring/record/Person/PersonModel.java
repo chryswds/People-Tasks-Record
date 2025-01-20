@@ -19,8 +19,11 @@ public class PersonModel {
     private String email;
     private int age;
 
-    @OneToMany
-    private List<TasksModel> tasks;
+
+
+    @ManyToOne
+    @JoinColumn(name = "tasks_id") // Foreigner Key
+    private TasksModel tasks;
 
 
     public PersonModel() {

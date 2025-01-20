@@ -4,6 +4,8 @@ package cl.spring.record.Tasks;
 import cl.spring.record.Person.PersonModel;
 import jakarta.persistence.*;
 
+import java.util.List;
+
 @Entity
 @Table(name = "tb_tasks")
 public class TasksModel {
@@ -14,7 +16,7 @@ public class TasksModel {
     private String name;
     private String time_requested;
 
-    @ManyToOne
-    private PersonModel person;
+    @OneToMany(mappedBy = "tasks")
+    private List<PersonModel> person;
 
 }
