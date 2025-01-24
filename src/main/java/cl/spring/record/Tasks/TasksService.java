@@ -1,6 +1,7 @@
 package cl.spring.record.Tasks;
 
 import java.util.List;
+import java.util.Optional;
 
 public class TasksService {
 
@@ -12,5 +13,10 @@ public class TasksService {
     // Show all registered tasks
     public List<TasksModel> listAll(){
         return tasksRepository.findAll();
+    }
+
+    // Add task
+    public TasksModel createTask(TasksModel task){
+        return tasksRepository.save(task);
     }
 }

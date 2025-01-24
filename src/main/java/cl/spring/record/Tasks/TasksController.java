@@ -16,8 +16,8 @@ public class TasksController {
     }
 
     @PostMapping("/add")
-    public String addTask(){
-        return "Task added";
+    public TasksModel addTask(@RequestBody TasksModel tasksModel){
+        return tasksService.createTask(tasksModel);
     }
 
     @PutMapping("/update")
