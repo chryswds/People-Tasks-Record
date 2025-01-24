@@ -2,9 +2,13 @@ package cl.spring.record.Person;
 
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/person")
 public class PersonController {
+
+    private PersonService personService;
 
     // Add person
     @PostMapping("/add")
@@ -13,15 +17,15 @@ public class PersonController {
     }
 
     // Show every person registered
-    @GetMapping("/all")
+    @GetMapping("/show")
     public List<PersonModel> listAll(){
-        return "All persons";
+        return personService.listAll();
     }
 
     // Search Person by ID
-    @GetMapping("/person")
-    public String showById(){
-        return "Person by id";
+    @GetMapping("/show/{id}")
+    public PersonModel showById(@PathVariable Long id){
+        return personService.listById(id);
     }
 
     // Update Person
