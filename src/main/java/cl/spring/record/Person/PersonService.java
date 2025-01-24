@@ -25,5 +25,13 @@ public class PersonService {
         Optional<PersonModel> personById = personRepository.findById(id);
         return personById.orElse(null);
     }
+
+    // Add Person
+    public PersonModel createPerson(PersonModel person){
+        return personRepository.save(person);
+    }
+
+
+
 }
 

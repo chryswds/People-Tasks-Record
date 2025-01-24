@@ -12,8 +12,8 @@ public class PersonController {
 
     // Add person
     @PostMapping("/add")
-    public String addPerson(){
-        return "Person added";
+    public PersonModel addPerson(@RequestBody PersonModel person){
+        return personService.createPerson(person);
     }
 
     // Show every person registered
