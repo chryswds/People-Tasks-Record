@@ -3,11 +3,11 @@ package cl.spring.record.Tasks;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("tasks")
+@RequestMapping("/tasks")
 public class TasksController {
 
 
-    @GetMapping("/show")
+    @GetMapping("/all")
     public String showTasks(){
         return "All tasks";
     }

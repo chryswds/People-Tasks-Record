@@ -3,14 +3,8 @@ package cl.spring.record.Person;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/person")
 public class PersonController {
-
-    @GetMapping("/welcome")
-    public String welcome(){
-        return "Hello World!";
-    }
-
 
     // Add person
     @PostMapping("/add")
@@ -25,19 +19,19 @@ public class PersonController {
     }
 
     // Search Person by ID
-    @GetMapping("/personbyid")
+    @GetMapping("/person")
     public String showById(){
         return "Person by id";
     }
 
     // Update Person
-    @PutMapping("/updatebyid")
+    @PutMapping("/update")
     public String updatePersonById(){
         return "Person updated";
     }
 
     // Delete Person
-    @DeleteMapping("/deletebyid")
+    @DeleteMapping("/delete")
     public String deletePersonById(){
         return "Person deleted";
     }
