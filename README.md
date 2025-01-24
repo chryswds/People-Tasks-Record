@@ -1,3 +1,9 @@
 A Record for people and tasks using Spring Boot
 
-Person can be registered and have tasks asigned to them
+A person can be registered and have tasks assigned to them
+
+Program uses
+
+Database: H2
+ORM: Hibernate
+Database versioning: Flyway
