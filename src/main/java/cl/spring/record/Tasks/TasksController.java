@@ -1,5 +1,6 @@
 package cl.spring.record.Tasks;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -7,8 +8,12 @@ import java.util.List;
 @RequestMapping("/tasks")
 public class TasksController {
     
-    private TasksService tasksService;
-
+    
+    private final TasksService tasksService;
+    
+    public TasksController(TasksService tasksService){
+        this.tasksService = tasksService;
+    }
 
     @GetMapping("/show")
     public List<TasksModel> showTasks(){
@@ -18,11 +23,6 @@ public class TasksController {
     @PostMapping("/add")
     public TasksModel addTask(@RequestBody TasksModel tasksModel){
         return tasksService.createTask(tasksModel);
-    }
-
-    @PutMapping("/update")
-    public String updateTask(){
-        return "Task updated";
     }
 
     @DeleteMapping("/delete/{id}")
