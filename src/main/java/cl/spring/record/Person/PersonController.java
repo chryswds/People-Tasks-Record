@@ -34,9 +34,9 @@ public class PersonController {
     }
 
     // Update Person
-    @PutMapping("/update")
-    public String updatePersonById(){
-        return "Person updated";
+    @PutMapping("/update/{id}")
+    public PersonModel updatePersonById(@PathVariable Long id, @RequestBody PersonModel updatedPerson){
+        return personService.updatePerson(id, updatedPerson);
     }
 
     // Delete Person
