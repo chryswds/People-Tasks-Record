@@ -1,15 +1,18 @@
 package cl.spring.record.Tasks;
 
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 @RequestMapping("/tasks")
 public class TasksController {
+    
+    private TasksService tasksService;
 
 
-    @GetMapping("/all")
-    public String showTasks(){
-        return "All tasks";
+    @GetMapping("/show")
+    public List<TasksModel> showTasks(){
+        return tasksService.listAll();
     }
 
     @PostMapping("/add")
