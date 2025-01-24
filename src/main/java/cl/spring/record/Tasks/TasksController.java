@@ -29,4 +29,9 @@ public class TasksController {
     public void deleteTaskById(@PathVariable Long id){
         tasksService.deleteTaskById(id);
     }
+
+    @PutMapping("/update/{id}")
+    public TasksModel updateTaskById(@PathVariable Long id, @RequestBody TasksModel updatedTask){
+        return tasksService.updateTask(id, updatedTask);
+    }
 }
