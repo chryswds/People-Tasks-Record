@@ -25,8 +25,8 @@ public class TasksController {
         return "Task updated";
     }
 
-    @DeleteMapping("/delete")
-    public String deleteTask(){
-        return "Task deleted";
+    @DeleteMapping("/delete/{id}")
+    public void deleteTaskById(@PathVariable Long id){
+        tasksService.deleteTaskById(id);
     }
 }
