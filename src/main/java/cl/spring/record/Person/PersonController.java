@@ -1,5 +1,6 @@
 package cl.spring.record.Person;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -8,11 +9,16 @@ import java.util.List;
 @RequestMapping("/person")
 public class PersonController {
 
+
     private PersonService personService;
+
+    public PersonController(PersonService personService){
+        this.personService = personService;
+    }
 
     // Add person
     @PostMapping("/add")
-    public PersonModel addPerson(@RequestBody PersonModel person){
+    public PersonModel createPerson(@RequestBody PersonModel person){
         return personService.createPerson(person);
     }
 
