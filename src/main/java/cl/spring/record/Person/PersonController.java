@@ -1,6 +1,5 @@
 package cl.spring.record.Person;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -10,7 +9,7 @@ import java.util.List;
 public class PersonController {
 
 
-    private PersonService personService;
+    private final PersonService personService;
 
     public PersonController(PersonService personService){
         this.personService = personService;
@@ -41,9 +40,9 @@ public class PersonController {
     }
 
     // Delete Person
-    @DeleteMapping("/delete")
-    public String deletePersonById(){
-        return "Person deleted";
+    @DeleteMapping("/delete/{id}")
+    public void deletePersonById(@PathVariable Long id) {
+        personService.deletePersonById(id);
     }
 
 

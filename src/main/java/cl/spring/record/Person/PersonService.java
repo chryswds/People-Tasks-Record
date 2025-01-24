@@ -31,6 +31,12 @@ public class PersonService {
         return personRepository.save(person);
     }
 
+    // Delete Person
+    public void deletePersonById(Long id){
+        System.out.println("Attempting to delete person with ID: " + id);
+        personRepository.deleteById(id);
+    }
+
 
 
 }
