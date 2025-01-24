@@ -14,7 +14,7 @@ public class PersonController {
 
     // Show every person registered
     @GetMapping("/all")
-    public String showAll(){
+    public List<PersonModel> listAll(){
         return "All persons";
     }
 
