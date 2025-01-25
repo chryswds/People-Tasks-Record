@@ -17,7 +17,7 @@ public class PersonController {
 
     // Add person
     @PostMapping("/add")
-    public PersonModel createPerson(@RequestBody PersonModel person){
+    public PersonDTO createPerson(@RequestBody PersonDTO person){
         return personService.createPerson(person);
     }
 

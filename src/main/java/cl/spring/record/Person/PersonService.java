@@ -10,11 +10,12 @@ import java.util.Optional;
 public class PersonService {
 
     private PersonRepository personRepository;
+    private PersonMapper personMapper;
 
-    public PersonService(PersonRepository personRepository){
+    public PersonService(PersonRepository personRepository, PersonMapper personMapper) {
         this.personRepository = personRepository;
+        this.personMapper = personMapper;
     }
-
     // Show all registered person
     public List<PersonModel> listAll(){
         return personRepository.findAll();
@@ -27,8 +28,10 @@ public class PersonService {
     }
 
     // Add Person
-    public PersonModel createPerson(PersonModel person){
-        return personRepository.save(person);
+    public PersonDTO createPerson(PersonDTO personDTO){
+        PersonModel person = personMapper.map(personDTO);
+        person = personRepository.save(person);
+        return personMapper.map(person);
     }
 
     // Delete Person
