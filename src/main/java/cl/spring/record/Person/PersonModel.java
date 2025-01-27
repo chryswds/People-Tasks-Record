@@ -34,6 +34,9 @@ public class PersonModel {
     @Column (name = "age")
     private int age;
 
+    @Column (name = "surname")
+    private String surname;
+
     @ManyToOne
     @JoinColumn(name = "tasks_id") // Foreigner Key
     private TasksModel tasks;
