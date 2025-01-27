@@ -16,13 +16,13 @@ public class TasksController {
     }
 
     @GetMapping("/show")
-    public List<TasksModel> showTasks(){
+    public List<TasksDTO> showTasks(){
         return tasksService.listAll();
     }
 
     @PostMapping("/add")
-    public TasksModel addTask(@RequestBody TasksModel tasksModel){
-        return tasksService.createTask(tasksModel);
+    public TasksDTO addTask(@RequestBody TasksDTO tasksDTO){
+        return tasksService.createTask(tasksDTO);
     }
 
     @DeleteMapping("/delete/{id}")
@@ -31,7 +31,7 @@ public class TasksController {
     }
 
     @PutMapping("/update/{id}")
-    public TasksModel updateTaskById(@PathVariable Long id, @RequestBody TasksModel updatedTask){
-        return tasksService.updateTask(id, updatedTask);
+    public TasksDTO updateTaskById(@PathVariable Long id, @RequestBody TasksDTO updatedTaskDTO){
+        return tasksService.updateTask(id, updatedTaskDTO);
     }
 }
