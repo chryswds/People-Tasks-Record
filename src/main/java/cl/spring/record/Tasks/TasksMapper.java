@@ -1,22 +1,25 @@
 package cl.spring.record.Tasks;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class TasksMapper {
 
-    public TasksMapper map(TasksDTO tasksDTO) {
-        TasksMapper tasksMapper = new TasksMapper();
-        tasksMapper.setId(tasksDTO.getId());
-        tasksMapper.setName(tasksDTO.getName());
-        tasksMapper.setTime_requested(tasksDTO.getTime_requested());
-        tasksMapper.setPerson(tasksDTO.getPerson());
-        return tasksMapper;
+    public TasksModel map(TasksDTO tasksDTO) {
+        TasksModel tasksModel = new TasksModel();
+        tasksModel.setId(tasksDTO.getId());
+        tasksModel.setName(tasksDTO.getName());
+        tasksModel.setTime_requested(tasksDTO.getTime_requested());
+        tasksModel.setPerson(tasksDTO.getPerson());
+        return tasksModel;
     }
 
-    public TasksDTO map(TasksMapper tasksMapper) {
+    public TasksDTO map(TasksModel tasksModel) {
         TasksDTO tasksDTO = new TasksDTO();
-        tasksDTO.setId(tasksMapper.getId());
-        tasksDTO.setName(tasksMapper.getName());
-        tasksDTO.setTime_requested(tasksMapper.getTime_requested());
-        tasksDTO.setPerson(tasksMapper.getPerson());
+        tasksDTO.setId(tasksModel.getId());
+        tasksDTO.setName(tasksModel.getName());
+        tasksDTO.setTime_requested(tasksModel.getTime_requested());
+        tasksDTO.setPerson(tasksModel.getPerson());
         return tasksDTO;
     }
 }

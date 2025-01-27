@@ -12,9 +12,9 @@ import java.util.List;
 
 @Entity
 @Table(name = "tb_tasks")
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
 public class TasksModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
