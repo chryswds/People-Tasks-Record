@@ -23,20 +23,20 @@ public class PersonController {
 
     // Show every person registered
     @GetMapping("/show")
-    public List<PersonModel> listAll(){
+    public List<PersonDTO> listAll(){
         return personService.listAll();
     }
 
     // Search Person by ID
     @GetMapping("/show/{id}")
-    public PersonModel showById(@PathVariable Long id){
+    public PersonDTO showById(@PathVariable Long id){
         return personService.listById(id);
     }
 
     // Update Person
     @PutMapping("/update/{id}")
-    public PersonModel updatePersonById(@PathVariable Long id, @RequestBody PersonModel updatedPerson){
-        return personService.updatePerson(id, updatedPerson);
+    public PersonDTO updatePersonById(@PathVariable Long id, @RequestBody PersonDTO updatedPersonDTO){
+        return personService.updatePerson(id, updatedPersonDTO);
     }
 
     // Delete Person
