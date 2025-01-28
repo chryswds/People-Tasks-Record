@@ -19,5 +19,5 @@ public class TasksDTO {
     private String time_requested;
 
     @JsonIgnore
-    private List<PersonModel> person;
+    private List<PersonDTO> person;
 }
