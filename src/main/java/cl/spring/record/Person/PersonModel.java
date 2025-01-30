@@ -6,6 +6,7 @@ import cl.spring.record.Tasks.TasksModel;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.util.List;
 

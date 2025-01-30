@@ -27,9 +27,9 @@ public class PersonController {
 
     // Show every person registered
     @GetMapping("/show")
-    public ResponseEntity<List<PersonDTO>> listAll(){
+    public ResponseEntity<String> listAll(){
         List<PersonDTO> persons = personService.listAll();
-        return ResponseEntity.ok(persons);
+        return ResponseEntity.ok(persons.toString());
     }
 
     // Search Person by ID
