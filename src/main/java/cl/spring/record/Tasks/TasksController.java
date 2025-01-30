@@ -1,6 +1,8 @@
 package cl.spring.record.Tasks;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -31,12 +33,22 @@ public class TasksController {
     }
 
     @DeleteMapping("/delete/{id}")
-    public void deleteTaskById(@PathVariable Long id){
-        tasksService.deleteTaskById(id);
+    public ResponseEntity<String> deleteTaskById(@PathVariable Long id){
+        if(showTaskById(id) != null) {
+            tasksService.deleteTaskById(id);
+            return ResponseEntity.ok("Task with ID: " + id + " deleted");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Task with ID: " + id + " not found");
     }
 
     @PutMapping("/update/{id}")
-    public TasksDTO updateTaskById(@PathVariable Long id, @RequestBody TasksDTO updatedTaskDTO){
-        return tasksService.updateTask(id, updatedTaskDTO);
+    public ResponseEntity<String> updateTaskById(@PathVariable Long id, @RequestBody TasksDTO updatedTaskDTO){
+        if(showTaskById(id) != null) {
+            TasksDTO tasksUpdate = tasksService.updateTask(id, updatedTaskDTO);
+            return ResponseEntity.ok("Task with ID: " + id + " updated\n" + "Name: " + tasksUpdate.getName());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Task with ID: " + id + " not found");
     }
 }

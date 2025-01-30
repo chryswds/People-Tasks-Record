@@ -54,7 +54,7 @@ public class PersonController {
     public ResponseEntity<String> deletePersonById(@PathVariable Long id) {
         if (personService.listById(id) != null) {
             personService.deletePersonById(id);
-            return ResponseEntity.status(HttpStatus.OK)
+            return ResponseEntity.ok()
                     .body("Person with ID: " + id + " deleted");
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
