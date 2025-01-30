@@ -1,6 +1,6 @@
 package cl.spring.record.Tasks;
 
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,13 +24,20 @@ public class TasksController {
     }
 
     @PostMapping("/add")
-    public TasksDTO addTask(@RequestBody TasksDTO tasksDTO){
-        return tasksService.createTask(tasksDTO);
+    public ResponseEntity<String> addTask(@RequestBody TasksDTO tasksDTO){
+        TasksDTO newTask = tasksService.createTask(tasksDTO);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Task created\n" + "Name :" + newTask.getName() + "\nID :" + newTask.getId());
     }
 
     @GetMapping("/show/{id}")
-    public TasksDTO showTaskById(@PathVariable Long id){
-        return tasksService.listById(id);
+    public ResponseEntity<String> showTaskById(@PathVariable Long id){
+        TasksDTO tasks = tasksService.listById(id);
+        if(tasks != null){
+            return ResponseEntity.ok(tasks.toString());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Task with ID: " + id + " not found");
     }
 
     @DeleteMapping("/delete/{id}")

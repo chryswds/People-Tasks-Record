@@ -20,4 +20,18 @@ public class TasksDTO {
 
     @JsonIgnore
     private List<PersonDTO> person;
+
+    @Override
+    public String toString() {
+        StringBuilder sb = new StringBuilder();
+        sb.append("id: ").append(id).append("\n")
+          .append("    name: ").append(name).append("\n")
+          .append("    time_requested: ").append(time_requested).append("\n")
+          .append("    team: ");
+        for (PersonDTO p : person) {
+            sb.append(p.getName()).append(" | ");
+        }
+        return sb.toString().trim();
+    }
+
 }
