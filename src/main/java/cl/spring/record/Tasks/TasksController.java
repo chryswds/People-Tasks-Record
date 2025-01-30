@@ -31,10 +31,10 @@ public class TasksController {
     }
 
     @GetMapping("/show/{id}")
-    public ResponseEntity<String> showTaskById(@PathVariable Long id){
-        TasksDTO tasks = tasksService.listById(id);
-        if(tasks != null){
-            return ResponseEntity.ok(tasks.toString());
+    public ResponseEntity<?> showTaskById(@PathVariable Long id){
+        TasksDTO task = tasksService.listById(id);
+        if(task != null){
+            return ResponseEntity.ok(task);
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body("Task with ID: " + id + " not found");

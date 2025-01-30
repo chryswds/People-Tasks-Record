@@ -1,6 +1,7 @@
 package cl.spring.record.Person;
 
 import cl.spring.record.Tasks.TasksModel;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,12 +13,18 @@ import lombok.ToString;
 @AllArgsConstructor
 public class PersonDTO {
 
+
     private Long id;
     private String name;
+
     private String email;
+
     private String imgUrl;
+
     private int age;
+
     private String surname;
+
     private TasksModel tasks;
 
     @Override

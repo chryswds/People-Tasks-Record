@@ -18,7 +18,6 @@ public class TasksDTO {
     private String name;
     private String time_requested;
 
-    @JsonIgnore
     private List<PersonDTO> person;
 
     @Override

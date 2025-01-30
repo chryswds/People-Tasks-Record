@@ -27,18 +27,18 @@ public class PersonController {
 
     // Show every person registered
     @GetMapping("/show")
-    public ResponseEntity<String> listAll(){
+    public ResponseEntity<List<PersonDTO>> listAll(){
         List<PersonDTO> persons = personService.listAll();
-        return ResponseEntity.ok(persons.toString());
+        return ResponseEntity.ok(persons);
     }
 
     // Search Person by ID
     @GetMapping("/show/{id}")
-    public ResponseEntity<String> showById(@PathVariable Long id){
+    public ResponseEntity<?> showById(@PathVariable Long id){
             PersonDTO person = personService.listById(id);
             if (person != null) {
                 return ResponseEntity.status(HttpStatus.OK)
-                        .body(person.toString());
+                        .body(person);
             } else {
                 return ResponseEntity.status(HttpStatus.NOT_FOUND)
                         .body("Person with ID: " + id + " not found");
