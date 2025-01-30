@@ -18,8 +18,9 @@ public class TasksController {
     }
 
     @GetMapping("/show")
-    public List<TasksDTO> showTasks(){
-        return tasksService.listAll();
+    public ResponseEntity<List<TasksDTO>> showTasks(){
+        List<TasksDTO> tasks = tasksService.listAll();
+        return ResponseEntity.ok(tasks);
     }
 
     @PostMapping("/add")
