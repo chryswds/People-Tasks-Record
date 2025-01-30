@@ -1,5 +1,8 @@
 package cl.spring.record.Person;
 
+import org.apache.coyote.Response;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -16,8 +19,10 @@ public class PersonController {
 
     // Add person
     @PostMapping("/add")
-    public PersonDTO createPerson(@RequestBody PersonDTO person){
-        return personService.createPerson(person);
+    public ResponseEntity<String> createPerson(@RequestBody PersonDTO person){
+        PersonDTO newPerson = personService.createPerson(person);
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body("Person created\n" + "Name :" + newPerson.getName() + "\nID :" + newPerson.getId());
     }
 
     // Show every person registered
@@ -34,14 +39,27 @@ public class PersonController {
 
     // Update Person
     @PutMapping("/update/{id}")
-    public PersonDTO updatePersonById(@PathVariable Long id, @RequestBody PersonDTO updatedPersonDTO){
-        return personService.updatePerson(id, updatedPersonDTO);
+    public ResponseEntity<String> updatePersonById(@PathVariable Long id, @RequestBody PersonDTO updatedPersonDTO){
+        if (personService.listById(id) != null){
+            PersonDTO personUpdate = personService.updatePerson(id, updatedPersonDTO);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Person with ID: " + id + " updated\n" + "Name: " + personUpdate.getName());
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Person with ID: " + id + " not found");
     }
 
     // Delete Person
     @DeleteMapping("/delete/{id}")
-    public void deletePersonById(@PathVariable Long id) {
-        personService.deletePersonById(id);
+    public ResponseEntity<String> deletePersonById(@PathVariable Long id) {
+        if (personService.listById(id) != null) {
+            personService.deletePersonById(id);
+            return ResponseEntity.status(HttpStatus.OK)
+                    .body("Person with ID: " + id + " deleted");
+        }
+        return ResponseEntity.status(HttpStatus.NOT_FOUND)
+                .body("Person with ID: " + id + " not found");
+
     }
 
 
