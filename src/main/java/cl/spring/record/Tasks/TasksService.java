@@ -25,6 +25,12 @@ public class TasksService {
                 .collect(Collectors.toList());
     }
 
+    // Show task by ID
+    public TasksDTO listById(Long id){
+        Optional<TasksModel> tasks = tasksRepository.findById(id);
+        return tasks.map(tasksMapper::map).orElse(null);
+    }
+
     // Add task
     public TasksDTO createTask(TasksDTO taskDTO){
         TasksModel tasks = tasksMapper.map(taskDTO);

@@ -25,6 +25,11 @@ public class TasksController {
         return tasksService.createTask(tasksDTO);
     }
 
+    @GetMapping("/show/{id}")
+    public TasksDTO showTaskById(@PathVariable Long id){
+        return tasksService.listById(id);
+    }
+
     @DeleteMapping("/delete/{id}")
     public void deleteTaskById(@PathVariable Long id){
         tasksService.deleteTaskById(id);
